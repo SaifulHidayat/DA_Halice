@@ -1,16 +1,25 @@
-# This is a sample Python script.
+import requests
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+headers = {
+    'User-Agent': 'Mobile'
+}
+url = 'http://172.18.58.80/halice'
 
+webpage = requests.get(url)
+print(webpage.text)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+print("Status code:")
+print("\t *", webpage.status_code)
 
+h = requests.head(url)
+print("Header:")
+print("****")
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+for x in h.headers:
+    print("\t ", x, ":", h.headers[x])
+print("****")
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+headers = {'User-Agent': 'Mobile'}
+url2 = 'http://httpbin.org/headers'
+request_header = requests.get(url2, headers=headers)
+print(request_header.text)
